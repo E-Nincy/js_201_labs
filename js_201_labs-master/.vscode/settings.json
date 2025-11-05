@@ -1,0 +1,7 @@
+{
+    "editor.formatOnSave": true,
+    "markdownlint.run": "onSave",
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
+    },
+}
