@@ -7,12 +7,17 @@ While you'll mainly be writing JavaScript, being able to efficiently write HTML 
 
     ```text
     Paste the five top commands here:
-    
+    div
+    .thing
+    ul>li*5
+    main>section*3
+    nav>ul>li*4>a
     ```
 
 3. Create a basic web page with Emmet, it should contain the basic HTML boilerplate, a `main` container with three `section` elements, each containing a header element and a few `div` elements. Write the necessary commands for that below.
 
     ```text
     Write the commands here:
-
+    !
+    main>section*3>h2+div*3
     ```

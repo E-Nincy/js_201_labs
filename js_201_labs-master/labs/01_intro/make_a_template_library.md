@@ -21,6 +21,7 @@ Here are the specific instructions for these labs:
 
    ```text
    Copy the link to your repository here:
+   https://github.com/E-Nincy/javascript-in-action
 
    ```
 
@@ -28,5 +29,7 @@ Here are the specific instructions for these labs:
 
    ```text
    Copy the links to your user profiles here:
+   https://codepen.io/E_Nincy
+   https://codesandbox.io/u/e-nincy
 
    ```

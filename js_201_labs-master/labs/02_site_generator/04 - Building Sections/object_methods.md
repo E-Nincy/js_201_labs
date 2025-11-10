@@ -67,3 +67,107 @@ Include these exercises in a solutions sandbox for this section.
    - `Object.keys()`
 
 3. Modify the functions to check if the value of the key is an array, if it is an array, then log each value of the array separately too.
+
+  ```js
+  // === exercise 1 ===
+  const btn = Object.assign(document.createElement("button"), {
+    innerText: "Press me!"
+  });
+  document.body.appendChild(btn);
+
+  // === exercise 2 and 3 ===
+  const user = {
+    id:2,
+    GUID:"f23ffc6c-f44f-496f-8542-217faa06fe2d",
+    SHA256:"e8c940e6d966e4ee85591413fafeb6512107d209f63d5b1fa67d5165bda45bff",
+    username:"lolman1",
+    first_name:"Leigh",
+    last_name:"Olman",
+    email:"lolman1@ifeng.com",
+    gender:"Genderqueer",
+    ip_address:"30.203.64.10",
+    status:"(rare text)",
+    avatar:"https://robohash.org/temporedictaquisquam.png?size=50x50&set=set1",
+    bio:"Large text...",
+    time_zone:"Asia/Shanghai",
+    profile_pic:"http://dummyimage.com/132x100.png/dddddd/000000",
+    department:"Research and Development",
+    previous_job:"Cement Mason",
+    preferences:{
+      fav_buzzwords:[
+        "infrastructure",
+        "systemic",
+        "multimedia",
+        "User-friendly",
+        "tertiary"
+      ],
+      fav_phrases:{
+        in_meetings:"benchmark real-time e-tailers",
+        with_colleagues:"Function-based actuating installation",
+        at_bar:"Cloned multimedia website"
+      },
+      fav_material:"Granite",
+      hobbies:[
+        "Bhangra",
+        "Biodiversity",
+        "DSLAM"
+      ],
+      fav_genre:"Action|Drama|Thriller",
+      fav_plant:"Swaying Bulrush",
+      fav_products:[
+        "Ice Cream Bar - Oreo Sandwich",
+        "Remy Red",
+        "Venison - Ground",
+        "Compound - Rum",
+        "Yeast Dry - Fermipan"
+      ],
+      trades_in:[
+        "Miscellaneous",
+        "Health Care"
+      ]
+    }
+  };
+
+  // for...in with arrays detections
+  function logWithForInArrays(obj) {
+    for (let key in obj) {
+      const value = obj[key];
+      if (Array.isArray(value)) {
+        console.log(key + ": (array)");
+        value.forEach(item => console.log("  -", item));
+      } else {
+        console.log(key + ":", value);
+      }
+    }
+  }
+
+  // Object.entries() with arrays
+  function logWithEntriesArrays(obj) {
+    Object.entries(obj).forEach(([key, value]) => {
+      if (Array.isArray(value)) {
+        console.log(key + ": (array)");
+        value.forEach(item => console.log("  -", item));
+      } else {
+        console.log(key + ":", value);
+      }
+    });
+  }
+
+  // Object.keys() with arrays
+  function logWithKeysArrays(obj) {
+    Object.keys(obj).forEach(key => {
+      const value = obj[key];
+      if (Array.isArray(value)) {
+        console.log(key + ": (array)");
+        value.forEach(item => console.log("  -", item));
+      } else {
+        console.log(key + ":", value);
+      }
+    });
+  }
+
+  // For try:
+  logWithForInArrays(user);
+  logWithEntriesArrays(user);
+  logWithKeysArrays(user);
+  ```

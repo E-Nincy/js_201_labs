@@ -33,3 +33,31 @@ Include these exercises in a solutions sandbox for this section.
    ```
 
    Use `console.log()` to output the three arguments `forEach()` handles at each iteration.
+
+  ```js
+   // === 1 ===
+   function greet(name) {
+     console.log("Hello, " + name + "!");
+   }
+
+   const greet2 = name => console.log(`Hello, ${name}!`);
+
+   const greet3 = (name) => {
+    const greeting = `Hello, ${name}!`;
+    console.log(greeting);
+   };
+
+   const greet4 = function(name) {
+    console.log("Hello, " + name + "!");
+   };
+
+   countries.forEach((item, index, array) => {
+    const cleanName = item.split(" (")[0];
+
+    console.log("value:", item);
+    console.log("index:", index);
+    console.log("array:", array);
+    console.log("cleaned:", cleanName);
+    console.log("------------");
+   });
+   ```
