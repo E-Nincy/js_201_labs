@@ -6,12 +6,25 @@ Make sure you have done the labs on Promises before starting these labs.
 
     ```js
     // Copy your answer here
+    async function getFiveRandoms() {
+      let total = 0;
+      for (let i = 0; i < 5; i++) {
+        const num = await randomNumber();
+        total += num;
+      }
+      console.log("Sum of 5 random numbers:", total);
+    }
     ```
 
 2. Do the same thing, but use `Promise.all()` in the asynchronous function to get each number asynchronously, instead of waiting for each promise to resolve before getting the new one.
 
     ```js
     // Copy your answer here
+    async function getFiveParallel() {
+      const promises = Array.from({ length: 5 }, randomNumber);
+      const results = await Promise.all(promises);
+      console.log("Sum (Promise.all):", results.reduce((a, b) => a + b, 0));
+    }
     ```
 
 3. In a new local sandbox project, write an async function that will fetch data from an API of your choice and present some of the results to the DOM.

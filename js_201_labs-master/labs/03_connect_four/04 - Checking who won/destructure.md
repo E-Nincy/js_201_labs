@@ -6,6 +6,7 @@
 
     ```js
     // Write answer here
+    const [a, b, c] = [10, 20, 30];
     ```
 
 2. Take this object:
@@ -37,16 +38,19 @@
 
     ```js
     // Write answer here
+    const { username, timezone, department } = user;
     ```
 
 3. Using the same object, create the variables `id`, `email` and `previous_job`, and on the same line, assign the _rest_ of the key, value pairs in the object to a new object called `additionalInfo`.
   
     ```js
     // Write answer here
+    const { id, email, previous_job, ...additionalInfo } = user;
     ```
-  
+
 4. With the `additionalInfo` object from the last excercise, assign the first two `fav_buzzwords` to variables called `mostFavBuzzword` and `secondFaveBuzzword`, and assign the _rest_ of buzzwords to one other variable called `otherBuzzwords`. Do this, as with all the previous labs in this file, one one line.
 
     ```js
     // Write answer here
+    const [mostFavBuzzword, secondFaveBuzzword, ...otherBuzzwords] = aditionalInfo.fav_buzzword;
     ```

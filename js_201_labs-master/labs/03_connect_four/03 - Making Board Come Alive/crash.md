@@ -8,10 +8,16 @@ If you are testing this out, make sure you have your browser task manager ready 
 
    ```js
    // Write your answer here
+   while (true) {
+     console.log("This will crash your browser 😵");
+  }
    ```
 
 2. Write a for loop that will crash your browser:
 
    ```js
    // Write your answer here
+   for (let i = 0; i >= 0; i++) {
+     console.log(i);
+  }
    ```

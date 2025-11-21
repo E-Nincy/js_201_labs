@@ -11,6 +11,7 @@
 
    ```js
    // Write your answer here
+   const combinedTemps = [...temps_a, ...temps_b];
    ```
 
 2. Take these objects:
@@ -24,6 +25,8 @@
 
    ```js
    // Write your answer here
+   const combinedDetails = { ...personal_details, ...usage_stats };
+
    ```
 
 3. Use spreading to write a function that takes an arbitrary number of string values and says hello to all of them:
@@ -42,4 +45,9 @@
 
    ```js
    // Write your answer here
+   function sayHello(...names) {
+     names.forEach(name => console.log(`Hello, ${name}!`));
+   }
+
+   sayHello("Nomad", "Bob", "Jane");
    ```

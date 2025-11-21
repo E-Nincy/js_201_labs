@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Practicing Mapping</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+    table {
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <h2>Mapping Practice</h2>
+
+  <table id="mapTable">
+    <thead>
+      <tr>
+        <th colspan="10">Array Mapping Results</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    // 1️⃣ Base array
+    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+    // 2️⃣ Doubled values
+    const doubled = numbers.map(num => num * 2);
+
+    // 3️⃣ True/False if > 3
+    const overThree = numbers.map(num => num > 3);
+
+    // Function to add rows to the table
+    function addRow(arr, label) {
+      const tbody = document.querySelector("#mapTable tbody");
+      const row = document.createElement("tr");
+      arr.forEach(val => {
+        const cell = document.createElement("td");
+        cell.textContent = val;
+        row.appendChild(cell);
+      });
+      tbody.appendChild(row);
+    }
+
+    // Add rows
+    addRow(numbers, "Original");
+    addRow(doubled, "Doubled");
+    addRow(overThree, "Over 3?");
+
+    // 4️⃣ Weather data mapping
+    fetch("../../../../resources/weather.json")
+      .then(res => res.json())
+      .then(data => {
+        const temps = data.data.map(entry => entry.Temperature);
+        console.log("Temperatures list:", temps);
+      })
+      .catch(err => console.error("Error loading weather data:", err));
+  </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <body style="margin:0; background:black;">
+    <canvas id="canvas"></canvas>
+
+    <script>
+      // Set up canvas
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      // Box settings
+      let x = 0;
+      let y = 0;
+      let direction = 1;
+
+      const speed = 4;
+      const rowHeight = 80;
+
+      function animate(){
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = "white";
+        ctx.fillRect(x, y, 40, 40);
+
+        x += speed * direction;
+
+        if (x + 40 >= canvas.width){
+          direction = -1;
+          y += rowHeight;
+        }
+        if (x <= 0){
+          direction = 1;
+          y += rowHeight;
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    </script>
+  </body>
+</html>

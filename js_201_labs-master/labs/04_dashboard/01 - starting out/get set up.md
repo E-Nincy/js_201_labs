@@ -10,8 +10,11 @@ Another way to manage access to APIs is by using RapidAPI. It's an idea to regis
 
 Have a look at some interesting APIs that you could use for this dashboard project, and note down your top 3 picks below, and add a sentence for how this might be used in conjunction with the other API's:
 
-- ...
-- ...
-- ...
+- **ipinfo.io** – Detects user’s approximate location based on IP address.
+  Used to automatically determine the user’s city for other APIs.
+- **OpenWeatherMap** – Provides current weather data and forecasts.
+  Uses the city info from ipinfo.io to show local weather.
+- **Unsplash API** – Returns a relevant background image based on the city or weather condition.
+  Used to make the dashboard dynamic and visually appealing depending on the weather or location.
 
 The idea here is to combine info from more than one API in a creative way.

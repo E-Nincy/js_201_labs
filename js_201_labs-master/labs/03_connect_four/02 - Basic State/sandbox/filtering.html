@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Filtering Practice</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+    h2 {
+      color: #2c3e50;
+    }
+    ul {
+      background: #f8f9fa;
+      padding: 10px 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <h2>Target Stores</h2>
+  <ul id="targetList"></ul>
+
+  <h2>Non-Target Stores</h2>
+  <ul id="nonTargetList"></ul>
+
+  <script>
+    fetch("../../../../resources/stores.json")
+      .then(res => res.json())
+      .then(data => {
+        const stores = data.stores;
+
+        // 1️⃣ Filter Target stores
+        const targetStores = stores.filter(store => store[1] === "Target");
+
+        // 2️⃣ Filter non-Target stores
+        const nonTargetStores = stores.filter(store => store[1] !== "Target");
+
+        // Display Target stores
+        const targetList = document.getElementById("targetList");
+        targetStores.forEach(store => {
+          const li = document.createElement("li");
+          li.textContent = `${store[1]} - ${store[4]}, ${store[2]}`;
+          targetList.appendChild(li);
+        });
+
+        // Display non-Target stores
+        const nonTargetList = document.getElementById("nonTargetList");
+        nonTargetStores.forEach(store => {
+          const li = document.createElement("li");
+          li.textContent = `${store[1]} - ${store[4]}, ${store[2]}`;
+          nonTargetList.appendChild(li);
+        });
+      })
+      .catch(err => console.error("Error loading stores:", err));
+  </script>
+</body>
+</html>

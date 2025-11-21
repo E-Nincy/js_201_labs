@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Counters Mini Project</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      text-align: center;
+    }
+    .box {
+      border: 5px solid black;
+      padding: 10px;
+      display: inline-block;
+      margin: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .counter {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .counter div {
+      border: 2px solid #333;
+      width: 80px;
+      height: 120px;
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      justify-content: flex-start;
+      overflow: hidden;
+      position: relative;
+    }
+    .counter div::before {
+      content: attr(data-label);
+      position: absolute;
+      top: -25px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-weight: bold;
+    }
+    .square {
+      width: 18px;
+      height: 18px;
+      margin: 2px;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Counters Mini Project (with Colors)</h2>
+  <div class="counter" id="counters"></div>
+  <div id="root"></div>
+
+  <script>
+    // Create nested structure: A inside B inside C inside D
+    const root = document.getElementById("root");
+
+    function createBox(letter, color) {
+      const div = document.createElement("div");
+      div.className = "box";
+      div.id = letter;
+      div.style.borderColor = color;
+      const btn = document.createElement("button");
+      btn.textContent = letter;
+      btn.style.backgroundColor = color;
+      btn.style.color = "white";
+      div.appendChild(btn);
+      return div;
+    }
+
+    // Define boxes with unique colors
+    const boxA = createBox("A", "#e74c3c"); // red
+    const boxB = createBox("B", "#3498db"); // blue
+    const boxC = createBox("C", "#f1c40f"); // yellow
+    const boxD = createBox("D", "#2ecc71"); // green
+
+    // Nest them A > B > C > D
+    boxC.appendChild(boxD);
+    boxB.appendChild(boxC);
+    boxA.appendChild(boxB);
+    root.appendChild(boxA);
+
+    // Counters: D, C&D, B&C&D, ALL
+    const counters = document.getElementById("counters");
+    const counterDivs = ["D", "C&D", "B&C&D", "ALL"].map(label => {
+      const div = document.createElement("div");
+      div.dataset.label = label;
+      counters.appendChild(div);
+      return div;
+    });
+
+    // Function to add a visual block (square)
+    function addSquare(counterDiv, color) {
+      const sq = document.createElement("div");
+      sq.className = "square";
+      sq.style.backgroundColor = color;
+      counterDiv.appendChild(sq);
+    }
+
+    // Event bubbling logic
+    root.addEventListener("click", (e) => {
+      if (e.target.tagName === "BUTTON") {
+        const letter = e.target.textContent;
+
+        // Color for this button
+        const color = {
+          A: "#e74c3c",
+          B: "#3498db",
+          C: "#f1c40f",
+          D: "#2ecc71",
+        }[letter];
+
+        // Count on D
+        if (letter === "D") addSquare(counterDivs[0], color);
+
+        // Count on C and D
+        if (["C", "D"].includes(letter)) addSquare(counterDivs[1], color);
+
+        // Count on B, C, and D
+        if (["B", "C", "D"].includes(letter)) addSquare(counterDivs[2], color);
+
+        // Count on all buttons
+        addSquare(counterDivs[3], color);
+      }
+    });
+  </script>
+</body>
+</html>
+

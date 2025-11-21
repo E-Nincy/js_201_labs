@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Practicing Finding</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+    h2 {
+      color: #2c3e50;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h2>1️⃣ User Found (username: mgreatex8n)</h2>
+  <pre id="userFound"></pre>
+
+  <h2>2️⃣ Index of user with phrase "evolve extensible solutions"</h2>
+  <p id="userIndex"></p>
+
+  <h2>3️⃣ Does every user have a numerical ID?</h2>
+  <p id="everyCheck"></p>
+
+  <script>
+    fetch("../../../../resources/users.json")
+      .then(res => res.json())
+      .then(users => {
+        // 1️⃣ Find user with username = "mgreatex8n"
+        const foundUser = users.find(user => user.username === "mgreatex8n");
+        const userContainer = document.getElementById("userFound");
+
+        if (foundUser) {
+          for (let key in foundUser) {
+            userContainer.innerHTML += `${key}: ${foundUser[key]}<br>`;
+          }
+        } else {
+          userContainer.textContent = "User not found.";
+        }
+
+        // 2️⃣ Find index of user whose favorite phrase is "evolve extensible solutions"
+        const index = users.findIndex(
+          user => user.meeting_phrase === "evolve extensible solutions"
+        );
+        document.getElementById("userIndex").textContent =
+          index >= 0 ? `Index: ${index}` : "No user found with that phrase.";
+
+        // 3️⃣ Check if all users have a numeric ID
+        const allHaveNumericId = users.every(user => typeof user.id === "number");
+        document.getElementById("everyCheck").textContent = allHaveNumericId
+          ? "✅ Yes, all users have a numerical ID."
+          : "❌ No, not all users have a numerical ID.";
+      })
+      .catch(err => console.error("Error loading users:", err));
+  </script>
+</body>
+</html>

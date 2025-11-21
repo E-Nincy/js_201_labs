@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Method Chaining</title>
+</head>
+<body>
+  <h2>Vancouver Temperature Frequency</h2>
+  <table id="resultTable" border="1">
+    <thead>
+      <tr>
+        <th>Temperature (°C)</th>
+        <th>Frequency</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    // Load JSON data (assuming weather.json is in the same directory)
+    fetch("../../../../resources/weather.json")
+      .then(res => res.json())
+      .then(data => {
+        // Method chaining: filter → map → reduce
+        const frequency = data.data
+          .filter(entry => entry.City === "Vancouver")
+          .map(entry => {
+            // Convert Fahrenheit to Celsius if needed
+            return entry.Scale === "Fahrenheit"
+              ? Math.round((entry.Temperature - 32) * 5 / 9)
+              : entry.Temperature;
+          })
+          .reduce((acc, temp) => {
+            acc[temp] = (acc[temp] || 0) + 1;
+            return acc;
+          }, {});
+
+        // Display result in a table
+        const tbody = document.querySelector("#resultTable tbody");
+        Object.entries(frequency).forEach(([temp, count]) => {
+          const row = `<tr><td>${temp}</td><td>${count}</td></tr>`;
+          tbody.innerHTML += row;
+        });
+      })
+      .catch(err => console.error("Error loading data:", err));
+  </script>
+</body>
+</html>

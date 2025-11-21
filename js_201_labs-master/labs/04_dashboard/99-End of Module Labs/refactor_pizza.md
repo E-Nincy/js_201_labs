@@ -9,3 +9,57 @@ That is, a function that returns a promise that resolves to either a baked pizza
 And a function that returns a promise that resolves to either a delivered pizza or a lost driver, after a delay.
 
 Then chain these up so that it more closely models a real pizza restaurant.
+
+
+```js
+//Refactor the Pizza Example
+// Practicing async/await and promise chaining
+
+// Function that simulates baking a pizza
+function bakePizza() {
+  return new Promise((resolve, reject) => {
+    console.log("The pizza is in the oven...");
+    setTimeout(() => {
+      const success = Math.random() > 0.2; // 80% chance to bake successfully
+      if (success) {
+        resolve("Pizza baked successfully!");
+      } else {
+        reject("Oh no! The pizza burned!");
+      }
+    }, 1500);
+  });
+}
+
+// Function that simulates delivering a pizza
+function deliverPizza() {
+  return new Promise((resolve, reject) => {
+    console.log("The delivery driver is on the way...");
+    setTimeout(() => {
+      const success = Math.random() > 0.2; // 80% chance of success
+      if (success) {
+        resolve("Pizza delivered to the customer!");
+      } else {
+        reject("The driver got lost on the way!");
+      }
+    }, 1500);
+  });
+}
+
+// Async function that chains the two processes
+async function orderPizza() {
+  try {
+    const baked = await bakePizza();
+    console.log(baked);
+
+    const delivered = await deliverPizza();
+    console.log(delivered);
+
+    console.log("Order complete — happy customer!");
+  } catch (error) {
+    console.error("Order failed:", error);
+  }
+}
+
+// 4️⃣ Run it
+orderPizza();
+```

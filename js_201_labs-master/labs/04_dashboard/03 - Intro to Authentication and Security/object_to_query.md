@@ -4,6 +4,30 @@ Create two utility functions that will take a non-nested JavaScript object, and 
 
 Likewise, make a function that will take a query string and turn it into an object.
 
+```js
+function objectToQuery(obj) {
+  for (const key in obj) {
+    if (typeof obj[key] === "object") throw new Error("Nested objects not allowed");
+  }
+  return Object.entries(obj)
+    .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`)
+    .join("&");
+}
+
+// Convert query string to object:
+
+function queryToObject(query) {
+  return Object.fromEntries(new URLSearchParams(query));
+}
+
+// Extract query string from page URL and log as object:
+
+const params = new URLSearchParams(window.location.search);
+const result = Object.fromEntries(params.entries());
+console.log(result);
+
+```
+
 After that:
 
 - Make your function reject objects that are nested by raising an error.
